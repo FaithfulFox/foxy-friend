@@ -15,6 +15,6 @@ if not ("build" | path exists) {
 
 let executable_path = ("build" | path join $"(pwd | path basename)")
 
-$managed_files | ^zip $executable_path ...$in
+$managed_files | ^zip -r $executable_path ...$in
 
 mv $"($executable_path).zip" $"($executable_path).love"
