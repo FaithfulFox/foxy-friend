@@ -5,7 +5,9 @@ function love.load()
 	UI:push(menu)
 end
 
-function love.update(dt) UI:update(dt) end
+function love.update(dt)
+	UI:update(dt)
+end
 
 ---@param destination any[]
 ---@param source any[]
@@ -28,7 +30,7 @@ local function deep_merge(destination, source)
 end
 
 function love.draw()
-	love.graphics.setBackgroundColor(0.8, 0.25, 0.05, 1.0)
+	-- love.graphics.setBackgroundColor(0.8, 0.25, 0.05, 1.0)
 
 	UI:render()
 end

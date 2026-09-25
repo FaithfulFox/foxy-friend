@@ -1,3 +1,4 @@
 column_width = 60
+indent_type = "Spaces"
 indent_width = 3
-collapse_simple_statement = "Always" 
+collapse_simple_statement = "ConditionalOnly"

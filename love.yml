@@ -1,0 +1,5 @@
+---
+base: luajit
+globals:
+  love:
+    any: true
