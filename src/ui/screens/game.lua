@@ -1,5 +1,6 @@
 local Canvas = require("src.ui.widgets.canvas")
 local Grid = require("src.ui.layouts.grid")
+local Flex = require("src.ui.layouts.flex")
 local Button = require("src.ui.widgets.button")
 
 local Game = {}
@@ -13,7 +14,7 @@ function Game:enter()
 
    self.pet_window = Canvas.new({ 0.7, 0.2, 0.03, 1.0 })
 
-   self.controls = Grid.new(2)
+   self.controls = Flex.new()
    self.controls.padding = 10
    self.controls.w = 400
    self.controls.h = 300
@@ -24,6 +25,7 @@ function Game:enter()
    self.controls:add({ child = Button.new("Sleep", function() end) })
    self.controls:add({ child = Button.new("Clean", function() end) })
    local meta_buttons = Grid.new(5)
+   meta_buttons.w = 300
    meta_buttons:add({
       child = Button.new("Inventory", function() end),
    })
@@ -34,9 +36,12 @@ function Game:enter()
       opts = { span = 2 },
    })
    meta_buttons:add({
-      child = Button.new("yo mama", function() end),
+      child = Button.new("y", function() end),
+      opts = { span = 1 },
    })
    self.controls:add({ child = meta_buttons, opts = { span = 2 } })
+
+   self.controls:add({ child = Button.new("Clean", function() end) })
 
    self.game:add({ child = self.pet_window })
    self.game:add({ child = self.controls })

@@ -1,11 +1,16 @@
 local Widget = require("src.ui.core.widget")
 
+---@class Button: Widget
+---@field text string
+---@field action function
+---@field active boolean
+---@field hover boolean
 local Button = setmetatable({}, Widget)
 Button.__index = Button
 
 ---@param text string
 ---@param action function
----@return Widget
+---@return Button
 function Button.new(text, action)
    ---@class Widget
    local self = Widget.new()
@@ -33,17 +38,17 @@ function Button:update(dt)
       if love.mouse.isDown(1) then
          if self.action then self.action() end
          self.active = true
-      else
-         self.active = false
       end
    else
       self.hover = false
+      if love.mouse.isDown(1) then self.active = false end
    end
 end
 
 function Button:render()
    local r, g, b, a = love.graphics.getColor()
    if self.hover then love.graphics.setColor(1.0, 0.0, 0.0, 1.0) end
+   if self.active then love.graphics.setColor(0.0, 0.0, 1.0, 1.0) end
    love.graphics.rectangle("fill", self.x, self.y, self.w, self.h)
 
    local text_width = love.graphics.getFont():getWidth(self.text)
@@ -52,7 +57,7 @@ function Button:render()
       { { 0.0, 0.0, 0.0, 1.0 }, self.text },
       (self.x + (self.w / 2)) - (text_width / 2),
       (self.y + (self.h / 2)) - (text_height / 2),
-      self.w - 4
+      self.w - (self.w * 0.1)
    )
 
    love.graphics.setColor(r, g, b, a)

@@ -12,8 +12,8 @@ function Widget.new()
    return setmetatable({
       x = 0,
       y = 0,
-      w = 100,
-      h = 20,
+      w = 200,
+      h = 50,
       visible = true,
       children = {},
    }, Widget)

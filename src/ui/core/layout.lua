@@ -17,12 +17,13 @@ function Layout.new()
       x = 0,
       y = 0,
       w = 100,
-      h = 20,
+      h = 50,
       visible = true,
       children = {},
    }, Layout)
 end
 
+---@param child ChildSpec
 function Layout:add(child)
    table.insert(self.children, child)
 end

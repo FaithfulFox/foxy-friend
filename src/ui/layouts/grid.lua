@@ -31,6 +31,7 @@ local update_layout = function(self)
 
    local child = 1
 
+   local x = 1
    for i = 1, rows, 1 do
       for j = 1, self.cols, 1 do
          if child > #self.children then break end
@@ -45,14 +46,16 @@ local update_layout = function(self)
             self.padding, self.padding, self.padding, self.padding
 
          if i == rows then padding_b = self.padding * 2 end
-         if j == self.cols then padding_r = self.padding * 2 end
+         if x == self.cols then padding_r = self.padding * 2 end
 
-         c.child.x = self.x + (divx * (j - 1)) + padding_l
+         c.child.x = self.x + (divx * (x - 1)) + padding_l
          c.child.y = self.y + (divy * (i - 1)) + padding_t
          c.child.w = (divx * span) - padding_r
          c.child.h = divy - padding_b
 
          child = child + 1
+         x = x + span
+         if x > self.cols then x = 1 end
       end
    end
 end
